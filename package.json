@@ -31,7 +31,6 @@
     "@wdio/selenium-standalone-service": "^7.7.3",
     "@wdio/spec-reporter": "^7.7.3",
     "chromedriver": "^91.0.1",
-    "Faker": "^0.7.2",
     "wdio-chromedriver-service": "^7.1.0"
   }
 }
