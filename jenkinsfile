@@ -1,0 +1,42 @@
+branch = "add-jenkinsfile"
+repourl = "git@github.com:bugzee567/TDL-School.git"
+
+pipeline {
+    agent any 
+    stages {
+        stage('Prepare repository') { 
+            steps {
+                cloneRepo()
+                // 
+            }
+        }
+        stage('Install dependencies') { 
+            steps {
+                bat 'npm install'
+                // 
+            }
+        }
+        stage('Run test') { 
+            steps {
+                bat 'npm run multi -- --spec features/appRTC.feature '
+                // 
+            }
+        }
+        stage('Report') { 
+            steps {
+                allure([
+                    includeProperties: true,
+                    jdk: '',
+                    properties: [],
+                    reportBuildPolicy: 'ALWAYS',
+                    results: [[path: 'allure-results']]
+            ])
+                // 
+            }
+        }
+    }
+}
+def cloneRepo(){
+    checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]],
+    userRemoteConfigs: [[url: repourl]]])
+}
