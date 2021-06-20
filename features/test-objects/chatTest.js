@@ -9,6 +9,8 @@ var user2RandomMessage = faker.lorem.sentence()
 
 export class ChatTest {
     usersLanded(){
+        browser.setWindowSize(1550,800)
+        browser.pause(2000)
         pages.user1.chatPage.getConnectedMessage().waitForDisplayed()
         pages.user2.chatPage.getConnectedMessage().waitForDisplayed()
     }
