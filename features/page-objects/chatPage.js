@@ -54,6 +54,7 @@ export class ChatPage extends Page {
     }
 
     openPage() {
+        browser.setWindowSize(1550,800)
         this.browser.url('https://demos.mqtt.cool/chat/')
     }
 }
